@@ -1,4 +1,6 @@
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import relationship
+
 from app.database import Base
 
 
@@ -16,4 +18,9 @@ class Author(Base):
         String(100),
         nullable=False,
         unique=True
+    )
+
+    books = relationship(
+        "Book",
+        back_populates="author"
     )

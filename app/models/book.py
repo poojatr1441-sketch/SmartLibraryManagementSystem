@@ -1,4 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
+
 from app.database import Base
 
 
@@ -47,4 +49,14 @@ class Book(Base):
     available_copies = Column(
         Integer,
         nullable=False
+    )
+
+    author = relationship(
+        "Author",
+        back_populates="books"
+    )
+
+    category = relationship(
+        "Category",
+        back_populates="books"
     )
